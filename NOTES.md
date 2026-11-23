@@ -1,6 +1,6 @@
 # Development notes
 
-`main.py` (4,083 bytes) is the packed form of the engine: an lzma payload that
+`main.py` (4,045 bytes) is the packed form of the engine: an lzma payload that
 unpacks to a complete chess engine in Python — 0x88 board, negamax alpha-beta
 with iterative deepening under a fixed node budget (no clock, so a trial's
 replay makes the same moves), a transposition table, null-move pruning,
@@ -27,3 +27,7 @@ game's position history for repetition scoring.
 - v1, orientation fixed: Elo 1099 (1W-2D-3L).
 - v2, null-move pruning + late-move reductions, 45k node budget: Elo 1099
   (2W-0D-4L) — the two draws converted into a win and a loss, same points.
+- v3 (check extension + PVS) and v4 (88k budget): trial-0 Elo 997 each —
+  extra branches starved the main line; more nodes only reshuffled a game.
+- v5, one killer move per ply + 64k budget, FORMAT_ALONE packing:
+  trial-0 Elo 997 (1W-1D-4L), trial-1 Elo 1191 (1W-3D-2L).
