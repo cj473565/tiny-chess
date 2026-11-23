@@ -18,3 +18,12 @@ game's position history for repetition scoring.
   built from, and plays legal moves against a stub env.
 - Local practice trials run with the kit's own env and scorer; results are
   recorded here as they are measured.
+
+## Measured results (kit practice trial-0, 6 games)
+
+- v1, first build: Elo 876 (0W-2D-4L). Post-mortem found the piece-square
+  tables are stored rank-1-first while the index math assumed the opposite
+  orientation for one color, so one side played with a mirrored table.
+- v1, orientation fixed: Elo 1099 (1W-2D-3L).
+- v2, null-move pruning + late-move reductions, 45k node budget: Elo 1099
+  (2W-0D-4L) — the two draws converted into a win and a loss, same points.
